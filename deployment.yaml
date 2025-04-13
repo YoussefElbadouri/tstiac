@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bad-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: badapp
+  template:
+    metadata:
+      labels:
+        app: badapp
+    spec:
+      containers:
+      - name: badcontainer
+        image: nginx:latest
+        securityContext:
+          runAsUser: 0
